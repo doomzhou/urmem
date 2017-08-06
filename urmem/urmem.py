@@ -3,7 +3,10 @@
 
 import logging
 import sys
-from urllib import request
+try:
+    import urllib.request as urlrequest
+except:
+    import urllib as urlrequest
 
 
 logging.basicConfig(level=logging.WARNING)
@@ -12,11 +15,11 @@ BASEURL="https://raw.githubusercontent.com/doomzhou/dotdir/master/"
 def main ():
     logging.info("start raw file")
     try:
-        res = request.urlopen("%s%s" % (BASEURL, sys.argv[1]))
+        res = urlrequest.urlopen("%s%s" % (BASEURL, sys.argv[1]))
         with res as f:
             print(f.read().decode())
-    except:
-        logging.warning("url open exception")
+    except AttributeError:
+        print(res.read())
 
     logging.info("end exit")
     sys.exit(0)
