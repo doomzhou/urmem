@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name= 'urmem',
-    version= '0.0.44',
+    version= '0.0.46',
     packages = ['urmem'],
     entry_points = {
         "console_scripts": [
