@@ -1,12 +1,12 @@
 Intro
 ====
+>简介
 
 shell profile online.
 >实现云端shell profile 功能.
 
-## install 
+## Install 
 >安装
-
 `pip install urmem`
 
 
@@ -16,6 +16,10 @@ shell profile online.
 
 ## Usage
 >用法
+
+
+### help info
+>帮助信息
 
 ```shell
 usage: urmem [-h] [-r REPO] [-b BRANCH] [-f FILENAME] NAME
@@ -36,5 +40,18 @@ optional arguments:
 >例子: 下载[你的]github[仓库]下面[不同分支][不同文件]添加到SHELL启动配置文件
 
 `urmem doomzhou -f default -r urmem -b master`
+
 or
+
 `urmem doomzhou`
+
+
+
+## MISC
+>其它
+
+
+### 1. Specified SHELL
+>指定SHELL
+
+`SHELL=bash urmem ...`
