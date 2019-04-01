@@ -18,7 +18,7 @@ shell profile online.
 >用法
 
 
-### help info
+### Help Info
 >帮助信息
 
 ```shell
@@ -36,7 +36,7 @@ optional arguments:
   -f FILENAME  UR file name
 ```
 
-### example: download [UR] github [repo] [branch] [filename] to local .$(SHELL)_profile 
+### Example: download [UR] github [repo] [branch] [filename] to local .$(SHELL)_profile 
 >例子: 下载[你的]github[仓库]下面[不同分支][不同文件]添加到SHELL启动配置文件
 
 `urmem doomzhou -f default -r urmem -b master`
