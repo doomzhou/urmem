@@ -55,7 +55,7 @@ def main():
     else:
         logging.warning('network error')
         sys.exit(2)
-    wrapContent = "\n###### auto generate by urmem\n%s#####end of generate".format(content)
+    wrapContent = "\n###### auto generate by urmem\n{}#####end of generate".format(content)
     writeToProfile(wrapContent) 
     logging.info("download with {} end exit".format(content))
     sys.exit(0)
