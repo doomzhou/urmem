@@ -4,6 +4,7 @@
 import logging
 import sys
 import os
+import argparse
 try:
     import urllib.request as urlrequest
 except:
@@ -11,7 +12,16 @@ except:
 
 
 logging.basicConfig(level=logging.WARNING)
-BASEURL="https://raw.githubusercontent.com/doomzhou/dotdir/master/"
+BASEURL="https://raw.githubusercontent.com/{}/{}/{}/{}"
+
+
+parser = argparse.ArgumentParser(description='shell profile online')
+parser.add_argument('name', action="store", metavar='NAME', help='UR github username')
+parser.add_argument('-r', action='store', dest='repo', help='UR repo name', default='urmem')
+parser.add_argument('-b', action='store', dest='branch', help='UR branch name', default='master')
+parser.add_argument('-f', action='store', dest='filename', help='UR file name', default='default')
+
+args = parser.parse_args()
 
 def writeToProfile(wrapContent):
     if os.getenv("SHELL").endswith("zsh"):
@@ -30,24 +40,26 @@ def writeToProfile(wrapContent):
     except Exception as e:
         logging.warning("exception: %s" % e)
 
-def main ():
+
+def main():
     logging.info("start raw file")
     content = ''
-    try:
-        res = urlrequest.urlopen("%s%s" % (BASEURL, sys.argv[1]))
-        content += res.read().decode()
-
-    except AttributeError:
-        content = res.read()
-
-    wrapContent = "\n###### auto generate by urmem\n%s#####end of generate" % content
+    url = BASEURL.format(args.name, args.repo, args.branch, args.filename)
+    res = urlrequest.urlopen(url)
+    if res.getcode() == 200:
+        try:
+            content += res.read().decode()
+        except Exception as e:
+            logging.warning(e)
+            content += res.read()
+    else:
+        logging.warning('network error')
+        sys.exit(2)
+    wrapContent = "\n###### auto generate by urmem\n%s#####end of generate".format(content)
     writeToProfile(wrapContent) 
-    print(wrapContent)
-    logging.info("end exit")
+    logging.info("download with {} end exit".format(content))
     sys.exit(0)
 
+
 if __name__ == "__main__":
-    if  len(sys.argv) < 2:
-        logging.warning("Usage: urmem identify")
-    else:
-        main()
+    main()
