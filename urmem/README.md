@@ -36,5 +36,7 @@ optional arguments:
 >例子: 下载[你的]github[仓库]下面[不同分支][不同文件]添加到SHELL启动配置文件
 
 `urmem doomzhou -f default -r urmem -b master`
+
 or
+
 `urmem doomzhou`
